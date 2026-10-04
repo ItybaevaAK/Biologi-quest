@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Разноуровневые задания — Многообразие животных</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;color:#111;background:linear-gradient(#dff6ff,#f7fff1);font-size:16px}
+header{background:linear-gradient(90deg,#d8f6d2,#d9f2ff,#f3dcff);padding:18px;text-align:center;border-bottom:4px solid #fff}
+h1{margin:0;color:#123d75;font-size:34px} h2{margin:5px 0;font-size:19px}.top{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:12px}
+input,textarea,select{font:inherit;color:#000;background:#fff;border:2px solid #aac;border-radius:12px;padding:10px}
+#name{width:320px}.score{font-weight:bold;background:#fff9d9;border:2px solid #239b56;border-radius:14px;padding:10px 18px;font-size:22px}
+main{max-width:1450px;margin:auto;padding:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.card{background:#fff;border-radius:22px;padding:18px;box-shadow:0 3px 12px #0002;border:3px solid}
+.a{border-color:#49b95e;background:#f5fff4}.b{border-color:#ff922b;background:#fffaf2}.c{border-color:#8b55db;background:#fcf8ff}
+.badge{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;color:white;font-size:34px;font-weight:bold;margin-right:8px}.a .badge{background:#169447}.b .badge{background:#f06b22}.c .badge{background:#6c3fc4}
+.title{display:flex;align-items:center;font-size:24px;font-weight:bold}.animals{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.animal{background:#fff;border:2px solid #9ac;border-radius:13px;padding:7px;text-align:center;flex:1;min-width:95px}.emoji{font-size:43px}
+.match{display:grid;grid-template-columns:1fr 1.6fr;gap:8px;margin:8px 0;align-items:center}.context{padding:12px;background:#fff0dc;border-radius:14px;line-height:1.55}
+.options label{display:block;background:#fff;border:1px solid #bbb;border-radius:10px;padding:9px;margin:6px 0;color:#000}.illustration{font-size:58px;text-align:center;background:linear-gradient(#bdeaff,#77d4ea);border-radius:18px;padding:12px;margin:10px 0}
+textarea{width:100%;min-height:80px;margin-top:8px}.btn{border:0;border-radius:18px;padding:12px 18px;color:#fff;font-weight:bold;font-size:18px;cursor:pointer;width:100%;margin-top:12px}.a .btn{background:#15994b}.b .btn{background:#ff7028}.c .btn{background:#7340cf}
+.feedback{min-height:32px;font-weight:bold;padding-top:8px}.ok{color:#087d38}.no{color:#b52222}
+footer{max-width:1450px;margin:0 auto 20px;background:#fff;padding:15px;border-radius:16px;text-align:center}
+@media(max-width:950px){main{grid-template-columns:1fr}h1{font-size:27px}}
+</style></head>
+<body>
+<header><h1>ОНЛАЙН-ЗАДАНИЯ</h1><h2>«Многообразие животных. Особенности внешнего строения беспозвоночных и позвоночных животных»</h2>
+<div class="top"><label><b>Фамилия, имя:</b> <input id="name" placeholder="Введите фамилию и имя"></label><div class="score">Твой результат: <span id="total">0</span> / 4</div><button onclick="location.reload()">🔄 Начать заново</button><button onclick="openTeacher()" style="background:#263238;color:#fff;border:0;border-radius:12px;padding:11px 16px;font-weight:bold;cursor:pointer">👩‍🏫 Учитель</button></div></header>
+<main>
+<section class="card a"><div class="title"><span class="badge">A</span>Уровень A. Соотнеси — 1 балл</div>
+<p><b>Соотнесите животное с характерным признаком.</b></p>
+<div id="matches"></div><button class="btn" onclick="checkA()">✓ Проверить ответ</button><div id="fa" class="feedback"></div></section>
+
+<section class="card b"><div class="title"><span class="badge">B</span>Уровень B. Контекст — 1 балл</div>
+<div class="context"><b>Учёные обнаружили на морском дне неизвестное животное:</b><br>• тело мягкое;<br>• вокруг рта расположены щупальца;<br>• лучевая симметрия;<br>• позвоночник отсутствует;<br>• животное прикреплено к субстрату.</div>
+<div class="illustration">🌊 🪸 🐚 🌊</div>
+<p><b>1. К какой группе относится организм?</b></p><div class="options">
+<label><input type="radio" name="b" value="0"> А) моллюски</label><label><input type="radio" name="b" value="1"> Б) кишечнополостные</label><label><input type="radio" name="b" value="0"> В) членистоногие</label><label><input type="radio" name="b" value="0"> Г) иглокожие</label></div>
+<p><b>2. Назовите признаки, позволившие сделать вывод.</b></p><textarea id="bt" placeholder="Напишите свой ответ..."></textarea>
+<button class="btn" onclick="checkB()">✓ Проверить ответ</button><div id="fb" class="feedback"></div></section>
+
+<section class="card c"><div class="title"><span class="badge">C</span>Уровень C. Усложнённое — 2 балла</div>
+<p>Рассмотрите животных и выполните анализ.</p><div class="animals"><div class="animal"><div class="emoji">🦑</div>А. Кальмар</div><div class="animal"><div class="emoji">🦗</div>Б. Кузнечик</div><div class="animal"><div class="emoji">🐧</div>В. Пингвин</div><div class="animal"><div class="emoji">🦈</div>Г. Акула</div></div>
+<p><b>1. Выберите правильный тип опоры/скелета для каждого:</b></p>
+<div id="skeletons"></div>
+<p><b>2. Выберите два верных утверждения:</b></p><div class="options">
+<label><input type="checkbox" class="cc" value="0"> А) Кальмар относится к позвоночным.</label>
+<label><input type="checkbox" class="cc" value="1"> Б) Кузнечик имеет наружный хитиновый скелет.</label>
+<label><input type="checkbox" class="cc" value="1"> В) У пингвина передние конечности преобразованы в крылья.</label>
+<label><input type="checkbox" class="cc" value="0"> Г) Акула является беспозвоночным животным.</label></div>
+<p><b>3. Объясните, почему эти животные относятся к разным группам, используя признаки внешнего строения.</b></p><textarea id="ct" placeholder="Сформулируйте биологический вывод..."></textarea>
+<button class="btn" onclick="checkC()">✓ Проверить ответ</button><div id="fc" class="feedback"></div></section>
+</main>
+
+<section id="finalPanel" style="max-width:1450px;margin:0 auto 14px;padding:18px;background:#fff;border:3px solid #1e88e5;border-radius:20px;text-align:center">
+  <h2 style="color:#123d75">Итог работы</h2>
+  <p>После выполнения всех трёх уровней нажмите кнопку, чтобы получить итог и выполнить работу над ошибками.</p>
+  <button class="btn" style="max-width:430px;background:#1976d2" onclick="finishQuiz()">🏁 Показать результат</button>
+  <div id="finalResult" style="font-size:22px;font-weight:bold;margin-top:12px"></div>
+</section>
+
+<section id="mistakes" style="display:none;max-width:1450px;margin:0 auto 20px;padding:20px;background:#fffdf2;border:3px solid #f2b705;border-radius:20px">
+  <h2 style="color:#8a5a00">🔎 Работа над ошибками</h2>
+  <div id="mistakeContent"></div>
+  <div style="margin-top:16px;padding:14px;background:#eef8ff;border-radius:14px">
+    <b>Исправь свой ответ:</b>
+    <textarea id="correction" style="min-height:90px" placeholder="Запиши правильный признак или объясни, почему животное относится к беспозвоночным/позвоночным..."></textarea>
+    <button class="btn" style="background:#f0a000;max-width:420px" onclick="checkCorrection()">✓ Проверить работу над ошибками</button>
+    <div id="correctionFeedback" class="feedback"></div>
+  </div>
+</section>
+
+
+<div id="teacherModal" style="display:none;position:fixed;inset:0;background:#0009;z-index:9999;padding:20px;overflow:auto">
+ <div style="max-width:1050px;margin:35px auto;background:white;border-radius:20px;padding:22px;color:#000">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+   <h2 style="margin:0;color:#123d75">👩‍🏫 Кабинет учителя</h2>
+   <button onclick="closeTeacher()" style="font-size:22px;border:0;background:#eee;border-radius:10px;padding:6px 12px">✕</button>
+  </div>
+  <div id="teacherLogin">
+   <p>Введите код учителя:</p>
+   <input id="teacherCode" type="password" placeholder="Код учителя" style="width:260px">
+   <button onclick="teacherLogin()" style="padding:10px 18px;background:#263238;color:#fff;border:0;border-radius:10px;font-weight:bold">Войти</button>
+   <div id="teacherMsg" class="feedback"></div>
+  </div>
+  <div id="teacherPanel" style="display:none">
+   <p><b>Таблица результатов учащихся</b></p>
+   <div style="overflow:auto">
+    <table style="width:100%;border-collapse:collapse;text-align:center">
+     <thead><tr style="background:#d9efff">
+      <th style="border:1px solid #777;padding:8px">№</th>
+      <th style="border:1px solid #777;padding:8px;text-align:left">Фамилия, имя</th>
+      <th style="border:1px solid #777;padding:8px">Уровень A<br>/1</th>
+      <th style="border:1px solid #777;padding:8px">Уровень B<br>/1</th>
+      <th style="border:1px solid #777;padding:8px">Уровень C<br>/2</th>
+      <th style="border:1px solid #777;padding:8px">Общий балл<br>/4</th>
+     </tr></thead>
+     <tbody id="resultsBody"></tbody>
+    </table>
+   </div>
+   <p style="font-size:14px">Результаты сохраняются в браузере на этом устройстве после нажатия учеником «Показать результат».</p>
+   <button onclick="exportCSV()" style="padding:10px 16px;background:#1976d2;color:#fff;border:0;border-radius:10px;font-weight:bold">⬇ Скачать таблицу CSV</button>
+   <button onclick="clearResults()" style="padding:10px 16px;background:#c62828;color:#fff;border:0;border-radius:10px;font-weight:bold;margin-left:8px">Очистить результаты</button>
+  </div>
+ </div>
+</div>
+
+<footer><b>Цель обучения 7.1.1.3:</b> описывать отличительные признаки беспозвоночных и позвоночных животных.<br><b>Максимальный балл: 4.</b> Уровень A — 1, уровень B — 1, уровень C — 2.</footer>
+<script>
+const animals=[["Дождевой червь","Сегментированное мягкое тело, конечностей нет","🪱"],["Паук","Головогрудь и брюшко, 4 пары ног","🕷️"],["Улитка","Мягкое тело, есть раковина","🐌"],["Речной рак","Панцирь, 5 пар ходильных ног","🦞"],["Окунь","Чешуя и плавники","🐟"],["Лягушка","Голая кожа, 4 конечности","🐸"],["Ящерица","Сухая кожа с чешуёй, 4 конечности","🦎"],["Голубь","Перья, передние конечности — крылья","🐦"],["Мышь","Шерсть, 4 конечности","🐭"]];
+document.getElementById("matches").innerHTML=animals.map((x,i)=>`<div class="match"><div class="animal">${x[2]} <b>${x[0]}</b></div><select id="m${i}"><option value="">Выберите признак</option>${animals.map((y,j)=>`<option value="${j}">${y[1]}</option>`).join("")}</select></div>`).join("");
+const sk=[["А","Кальмар","опора отсутствует/внутренняя редуцированная"],["Б","Кузнечик","наружный"],["В","Пингвин","внутренний"],["Г","Акула","внутренний"]];
+document.getElementById("skeletons").innerHTML=sk.map((x,i)=>`<p>${x[0]} — ${x[1]}: <select id="s${i}"><option>выберите</option><option>наружный</option><option>внутренний</option><option>опора отсутствует/внутренняя редуцированная</option></select></p>`).join("");
+let scores={a:0,b:0,c:0}; function total(){document.getElementById("total").textContent=scores.a+scores.b+scores.c}
+function checkA(){let n=0;animals.forEach((x,i)=>{if(document.getElementById("m"+i).value==i)n++});scores.a=n===9?1:0;document.getElementById("fa").className="feedback "+(scores.a?"ok":"no");document.getElementById("fa").textContent=scores.a?"Верно! +1 балл":"Есть ошибки. Верных соответствий: "+n+" из 9.";total()}
+function checkB(){
+  const r=document.querySelector('input[name="b"]:checked');
+  const textEl=document.getElementById("bt");
+  const feedback=document.getElementById("fb");
+  const t=(textEl.value||"").trim().toLowerCase();
+
+  if(!r){
+    feedback.className="feedback no";
+    feedback.textContent="Сначала выберите группу животного.";
+    return;
+  }
+  if(t.length<5){
+    feedback.className="feedback no";
+    feedback.textContent="Теперь обоснуйте ответ: укажите хотя бы один характерный признак.";
+    return;
+  }
+
+  const groupCorrect=r.value==="1";
+  const evidence=[
+    "щупал","лучев","радиаль","позвоноч","скелет","прикреп","мягк"
+  ].some(k=>t.includes(k));
+
+  const good=groupCorrect && evidence;
+  scores.b=good?1:0;
+
+  feedback.className="feedback "+(good?"ok":"no");
+  if(good){
+    feedback.textContent="Верно! Кишечнополостные распознаны по характерным признакам. +1 балл";
+  }else if(!groupCorrect){
+    feedback.textContent="Ответ пока неверный. Ещё раз сопоставьте описание организма с группами животных.";
+  }else{
+    feedback.textContent="Группа выбрана верно. Добавьте в объяснение признак из условия: щупальца, лучевая симметрия, отсутствие позвоночника или прикреплённый образ жизни.";
+  }
+  total();
+}
+function checkC(){let skok=sk.every((x,i)=>document.getElementById("s"+i).value===x[2]);let ch=[...document.querySelectorAll(".cc:checked")];let chok=ch.length===2&&ch.every(x=>x.value==="1");let t=ct.value.toLowerCase();let expl=t.length>25&&(t.includes("позвоноч")||t.includes("скелет")||t.includes("покров"));scores.c=(skok?0.5:0)+(chok?0.5:0)+(expl?1:0);document.getElementById("fc").className="feedback "+(scores.c===2?"ok":"no");document.getElementById("fc").textContent="Результат уровня C: "+scores.c+" / 2";total()}
+
+function finishQuiz(){
+  const final=document.getElementById("finalResult");
+  const box=document.getElementById("mistakes");
+  const content=document.getElementById("mistakeContent");
+  const totalScore=scores.a+scores.b+scores.c;
+  final.innerHTML="Ваш результат: <span style='color:#087d38'>"+totalScore+" / 4</span>";
+  saveStudentResult(totalScore);
+
+  let parts=[];
+  if(scores.a<1){
+    parts.push("<h3>Уровень A</h3><p>Повтори признаки животных и исправь неверные соответствия.</p>"+
+      "<ul><li>Дождевой червь — сегментированное мягкое тело, конечностей нет.</li>"+
+      "<li>Паук — головогрудь и брюшко, 4 пары ног.</li>"+
+      "<li>Улитка — мягкое тело, есть раковина.</li>"+
+      "<li>Речной рак — панцирь, 5 пар ходильных ног.</li>"+
+      "<li>Окунь — чешуя и плавники.</li>"+
+      "<li>Лягушка — голая кожа, 4 конечности.</li>"+
+      "<li>Ящерица — сухая кожа с чешуёй, 4 конечности.</li>"+
+      "<li>Голубь — перья, передние конечности преобразованы в крылья.</li>"+
+      "<li>Мышь — шерсть, 4 конечности.</li></ul>");
+  }
+  if(scores.b<1){
+    parts.push("<h3>Уровень B</h3><p><b>Правильный ответ:</b> кишечнополостные. Улики: щупальца вокруг рта, лучевая симметрия, отсутствие позвоночника и прикреплённый образ жизни.</p>");
+  }
+  if(scores.c<2){
+    parts.push("<h3>Уровень C</h3><p><b>Проверь:</b> у кузнечика наружный хитиновый скелет; у пингвина и акулы — внутренний скелет. У пингвина передние конечности преобразованы в крылья. Позвоночных отличает наличие позвоночника и внутреннего скелета; у беспозвоночных позвоночник отсутствует.</p>");
+  }
+  if(parts.length===0){
+    content.innerHTML="<p class='ok' style='font-size:20px'>🎉 Все задания выполнены правильно. Ошибок нет! Для закрепления сформулируй главное отличие позвоночных от беспозвоночных.</p>";
+  }else{
+    content.innerHTML="<p><b>Сравни свои ответы с пояснениями и найди причину ошибки.</b></p>"+parts.join("");
+  }
+  box.style.display="block";
+  box.scrollIntoView({behavior:"smooth"});
+}
+function checkCorrection(){
+  const t=(document.getElementById("correction").value||"").toLowerCase().trim();
+  const f=document.getElementById("correctionFeedback");
+  const key=["позвоноч","скелет","щупал","лучев","хитин","перья","чешу","шерст","раков","сегмент"];
+  if(t.length>=15 && key.some(k=>t.includes(k))){
+    f.className="feedback ok";
+    f.textContent="Отлично! Работа над ошибками выполнена: ты использовал(а) биологический признак в объяснении.";
+  }else{
+    f.className="feedback no";
+    f.textContent="Допиши объяснение и обязательно назови конкретный биологический признак.";
+  }
+}
+
+
+const TEACHER_CODE="BIO7";
+function saveStudentResult(totalScore){
+  const name=(document.getElementById("name").value||"").trim() || "Без имени";
+  let rows=[];
+  try{ rows=JSON.parse(localStorage.getItem("bio7_results")||"[]"); }catch(e){ rows=[]; }
+  const row={name:name,a:scores.a,b:scores.b,c:scores.c,total:totalScore,time:new Date().toLocaleString("ru-RU")};
+  const idx=rows.findIndex(x=>x.name.toLowerCase()===name.toLowerCase());
+  if(idx>=0) rows[idx]=row; else rows.push(row);
+  localStorage.setItem("bio7_results",JSON.stringify(rows));
+}
+function openTeacher(){
+  document.getElementById("teacherModal").style.display="block";
+  document.getElementById("teacherLogin").style.display="block";
+  document.getElementById("teacherPanel").style.display="none";
+  document.getElementById("teacherCode").value="";
+  document.getElementById("teacherMsg").textContent="";
+}
+function closeTeacher(){document.getElementById("teacherModal").style.display="none";}
+function teacherLogin(){
+  const code=document.getElementById("teacherCode").value;
+  const msg=document.getElementById("teacherMsg");
+  if(code===TEACHER_CODE){
+    document.getElementById("teacherLogin").style.display="none";
+    document.getElementById("teacherPanel").style.display="block";
+    renderResults();
+  }else{
+    msg.className="feedback no"; msg.textContent="Неверный код учителя.";
+  }
+}
+function getRows(){
+  try{return JSON.parse(localStorage.getItem("bio7_results")||"[]");}catch(e){return [];}
+}
+function renderResults(){
+  const rows=getRows();
+  const body=document.getElementById("resultsBody");
+  body.innerHTML=rows.length?rows.map((r,i)=>`<tr>
+   <td style="border:1px solid #777;padding:8px">${i+1}</td>
+   <td style="border:1px solid #777;padding:8px;text-align:left">${escapeHtml(r.name)}</td>
+   <td style="border:1px solid #777;padding:8px">${r.a}</td>
+   <td style="border:1px solid #777;padding:8px">${r.b}</td>
+   <td style="border:1px solid #777;padding:8px">${r.c}</td>
+   <td style="border:1px solid #777;padding:8px;font-weight:bold">${r.total}</td>
+  </tr>`).join(""):`<tr><td colspan="6" style="padding:18px">Пока нет сохранённых результатов.</td></tr>`;
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+function exportCSV(){
+  const rows=getRows();
+  const data=[["Фамилия, имя","Уровень A /1","Уровень B /1","Уровень C /2","Общий балл /4"],
+    ...rows.map(r=>[r.name,r.a,r.b,r.c,r.total])];
+  const csv="\uFEFF"+data.map(row=>row.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(";")).join("\n");
+  const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="rezultaty_biologiya_7.csv"; a.click();
+  URL.revokeObjectURL(a.href);
+}
+function clearResults(){
+  if(confirm("Удалить все сохранённые результаты на этом устройстве?")){
+    localStorage.removeItem("bio7_results"); renderResults();
+  }
+}
+
+</script></body></html>
